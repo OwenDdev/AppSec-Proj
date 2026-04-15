@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 function Login(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     async function handleLogin(e){
 
         e.preventDefault();
+        setError("");
 
         //console.log(username);
         //console.log(password);
@@ -34,6 +36,7 @@ function Login(){
             } 
             else {
                 const errorText = await response.text(); // error = plain text
+                setError(errorText || "Login failed");
                 console.log("Login failed:", errorText);
                 return;
             }
@@ -73,6 +76,7 @@ function Login(){
         }
         catch (error) {
             console.error("Error connecting to API:", error);
+            setError("Cannot connect to server");
         }
     }
 
@@ -87,6 +91,8 @@ function Login(){
     return(
     <>  
         <h2>AppSec</h2>
+
+        {error && ( <p style={{ color: "red" }}>{error}</p> )}
 
         <form onSubmit={handleLogin}>
             <p>UserName:</p>

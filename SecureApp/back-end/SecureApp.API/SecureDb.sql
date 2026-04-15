@@ -21,9 +21,12 @@ CREATE TABLE Files (
     FileName NVARCHAR(255),
     FilePath NVARCHAR(500),
     UploadedBy NVARCHAR(50),
-    UploadDate DATETIME DEFAULT GETDATE()
+    UploadDate DATETIME2 DEFAULT GETDATE()
 );
 
 UPDATE Users
 SET PasswordHash = '$2a$11$ji5mMbiyWalomKZM4CLWpepApqFKOJqMsGA6kJrqhcPt4sYTYleUa'
 WHERE Username = 'user';
+
+ALTER TABLE Files
+ALTER COLUMN UploadDate DATETIME2;

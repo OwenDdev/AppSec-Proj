@@ -36,12 +36,12 @@ namespace SecureApp.API.Controllers
                 var refreshToken = Guid.NewGuid().ToString();
 
                 if (user == null)
-                    return Unauthorized("User not found");
+                    return Unauthorized("Invalid Username or password");
 
                 bool isValid = BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash);
 
                 if (!isValid)
-                    return Unauthorized("Wrong password");
+                    return Unauthorized("Invalid Username or password");
 
                 var jwtSettings = _config.GetSection("Jwt");
 
