@@ -7,8 +7,9 @@ function Login(){
     async function handleLogin(e){
 
         e.preventDefault();
-        console.log(username);
-        console.log(password);
+        
+        //console.log(username);
+        //console.log(password);
 
          //code to send information to Api 
         try {
