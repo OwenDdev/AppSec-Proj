@@ -7,13 +7,13 @@ function Login(){
     async function handleLogin(e){
 
         e.preventDefault();
-        
+
         //console.log(username);
         //console.log(password);
 
          //code to send information to Api 
         try {
-            const response = await fetch("http://localhost:5000/api/login", {
+            const response = await fetch("https://localhost:7244/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

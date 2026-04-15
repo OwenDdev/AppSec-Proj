@@ -10,3 +10,8 @@ VALUES ('admin', 'TEMP_HASH', 'Admin');
 
 INSERT INTO Users (Username, PasswordHash, Role)
 VALUES ('user', 'USER_HASH', 'User');
+
+
+UPDATE Users
+SET PasswordHash = '$2a$11$ji5mMbiyWalomKZM4CLWpepApqFKOJqMsGA6kJrqhcPt4sYTYleUa'
+WHERE Username = 'admin';
