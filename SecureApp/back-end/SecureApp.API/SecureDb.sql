@@ -15,3 +15,15 @@ VALUES ('user', 'USER_HASH', 'User');
 UPDATE Users
 SET PasswordHash = '$2a$11$ji5mMbiyWalomKZM4CLWpepApqFKOJqMsGA6kJrqhcPt4sYTYleUa'
 WHERE Username = 'admin';
+
+CREATE TABLE Files (
+    Id INT IDENTITY PRIMARY KEY,
+    FileName NVARCHAR(255),
+    FilePath NVARCHAR(500),
+    UploadedBy NVARCHAR(50),
+    UploadDate DATETIME DEFAULT GETDATE()
+);
+
+UPDATE Users
+SET PasswordHash = '$2a$11$ji5mMbiyWalomKZM4CLWpepApqFKOJqMsGA6kJrqhcPt4sYTYleUa'
+WHERE Username = 'user';

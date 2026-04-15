@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login(){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     async function handleLogin(e){
 
@@ -11,8 +13,8 @@ function Login(){
         //console.log(username);
         //console.log(password);
 
-         //code to send information to Api 
-        try {
+        //code to send information to Api 
+         try {
             const response = await fetch("https://localhost:7244/api/auth/login", {
                 method: "POST",
                 headers: {
@@ -24,12 +26,53 @@ function Login(){
                 })
             });
 
-            // store response form Api
-            const data = await response.json();
-            console.log(data);
+            //const data = await response.json();
+            let data;
+
+            if (response.ok) {
+                data = await response.json();  // success = JSON
+            } 
+            else {
+                const errorText = await response.text(); // error = plain text
+                console.log("Login failed:", errorText);
+                return;
+            }
+            
+            console.log("Login response:", data);
+
+            //stop if login failed
+            //if (!response.ok) {
+            //    console.log("Login failed");
+            //    return;
+            //}
+
+            //store token
+            //localStorage.setItem("token", data.token);
+
+            //const token = localStorage.getItem("token");
+
+            // call protected route properly
+            //const protectedResponse = await fetch("https://localhost:7244/api/auth/protected", {
+            //    headers: {
+            //        "Authorization": `Bearer ${token}`
+            //    }
+            //});
+
+            //const protectedData = await protectedResponse.text();
+            //console.log("Protected response:", protectedData);
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("role", data.role);
+            //redirect based on role
+            if (data.role === "Admin") {
+                navigate("/admin");
+            } else {
+                navigate("/user");
+            }
+
         }
         catch (error) {
-        console.error("Error connecting to API:", error);
+            console.error("Error connecting to API:", error);
         }
     }
 
