@@ -1,0 +1,12 @@
+﻿CREATE TABLE Users (
+    Id INT PRIMARY KEY IDENTITY,
+    Username NVARCHAR(50) NOT NULL UNIQUE,
+    PasswordHash NVARCHAR(255) NOT NULL,
+    Role NVARCHAR(20) NOT NULL
+);
+
+INSERT INTO Users (Username, PasswordHash, Role)
+VALUES ('admin', 'TEMP_HASH', 'Admin');
+
+INSERT INTO Users (Username, PasswordHash, Role)
+VALUES ('user', 'USER_HASH', 'User');
