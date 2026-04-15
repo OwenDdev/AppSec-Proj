@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BCrypt.Net;
+using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Identity.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SecureApp.API.Data;
 using SecureApp.API.Models;
-using BCrypt.Net;
 //jwt
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
-using Microsoft.AspNetCore.Authorization;
 
 namespace SecureApp.API.Controllers
 {
@@ -33,6 +33,7 @@ namespace SecureApp.API.Controllers
             public IActionResult Login([FromBody] LoginRequest request)
             {
                 var user = _context.Users.FirstOrDefault(u => u.Username == request.Username);
+                var refreshToken = Guid.NewGuid().ToString();
 
                 if (user == null)
                     return Unauthorized("User not found");
@@ -69,14 +70,13 @@ namespace SecureApp.API.Controllers
                 return Ok(new
                 {
                     token = tokenString,
+                    refreshToken = refreshToken,
                     role = user.Role,
                     username = user.Username
                 });
             }
 
-            // =========================
-            // PROTECTED TEST ROUTE
-            // =========================
+        
             [Authorize]
             [HttpGet("protected")]
             public IActionResult Protected()
@@ -129,6 +129,40 @@ namespace SecureApp.API.Controllers
 
             return Ok("User deleted");
         }
+        [HttpPost("refresh")]
+        public IActionResult Refresh([FromBody] RefreshRequest request)
+        {
+            // VERY SIMPLE VERSION (assignment level)
+            // Normally you'd validate against DB
+
+            if (string.IsNullOrEmpty(request.RefreshToken))
+                return Unauthorized();
+
+            var jwtSettings = _config.GetSection("Jwt");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
+
+            var claims = new[]
+            {
+        new Claim(ClaimTypes.Name, request.Username),
+        new Claim(ClaimTypes.Role, request.Role)
+    };
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var newToken = new JwtSecurityToken(
+                issuer: jwtSettings["Issuer"],
+                audience: jwtSettings["Audience"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(15),
+                signingCredentials: creds
+            );
+
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(newToken)
+            });
+        }
+
     }
 
 }

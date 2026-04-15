@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navbaruser from "./Navbaruser.jsx";
 
 function Fileupload() {
     const [file, setFile] = useState(null);
@@ -25,6 +26,7 @@ function Fileupload() {
 
     return (
         <>
+            <Navbaruser/>
             <h2>User view</h2>
 
             <input type="file" onChange={(e) => setFile(e.target.files[0])} />

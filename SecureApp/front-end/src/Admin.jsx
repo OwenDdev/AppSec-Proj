@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 function Admin() {
     const role = localStorage.getItem("role");
@@ -48,6 +49,7 @@ function Admin() {
 
     return (
         <>
+             <Navbar />
             <h2>Admin Dashboard</h2>
 
             <table border="1" cellPadding="10">
