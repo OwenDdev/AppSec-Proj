@@ -36,6 +36,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SecureApp.API.Controllers.AuthController",
+    "Method": "GetUsers",
+    "RelativePath": "api/Auth/users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SecureApp.API.Controllers.FileController",
     "Method": "Upload",
     "RelativePath": "api/File/upload",
