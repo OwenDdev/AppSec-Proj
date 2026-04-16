@@ -68,6 +68,7 @@ if (app.Environment.IsDevelopment())
 //var hash = BCrypt.Net.BCrypt.HashPassword("1234");
 //Console.WriteLine(hash);
 
+//download functionality
 app.UseStaticFiles();
 
 app.UseHttpsRedirection();

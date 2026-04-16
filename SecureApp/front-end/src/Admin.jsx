@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar.jsx";
+import CreateUser from "./CreateUser.jsx";
 
 function Admin() {
     const role = localStorage.getItem("role");
@@ -77,6 +78,9 @@ function Admin() {
                     ))}
                 </tbody>
             </table>
+
+            <h1>Create User</h1>
+            <CreateUser/>
         </>
     );
 }

@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SecureApp.API.Data;
 using SecureApp.API.Models;
+//logger
+using SecureApp.API.Services;
 //jwt
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-//logger
-using SecureApp.API.Services;
 
 namespace SecureApp.API.Controllers
 {
@@ -131,6 +131,40 @@ namespace SecureApp.API.Controllers
             }
 
 
+
+        [HttpPost("signup")]
+        public IActionResult Signup([FromBody] RegisterRequest request)
+        {
+            var existingUser = _context.Users
+                .FirstOrDefault(u => u.Username == request.Username);
+
+            if (existingUser != null)
+            {
+                _customLogger.LogWarning($"Signup failed: username already exists ({request.Username})");
+                return BadRequest("User already exists");
+            }
+
+            // Decide role safely
+            var role = string.IsNullOrEmpty(request.Role)
+                ? "User"
+                : (request.Role == "Admin" ? "Admin" : "User");
+
+            var user = new User
+            {
+                Username = request.Username,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
+                Role = role
+            };
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            _customLogger.Log($"New user registered: {request.Username} with role {role}");
+
+            return Ok(new { message = "User created successfully" });
+        }
+
+
         [Authorize(Roles = "Admin")]
         [HttpDelete("users/{id}")]
         public IActionResult DeleteUser(int id)
@@ -143,7 +177,11 @@ namespace SecureApp.API.Controllers
                 _customLogger.LogWarning($"Admin {admin} attempted to delete NON-EXISTENT user ID {id}");
                 return NotFound();
             }
-                
+            if (user.Username == admin)
+            {
+                _customLogger.LogWarning($"Admin {admin} attempted to delete themselves");
+                return BadRequest("Admins cannot delete themselves");
+            }
 
             _context.Users.Remove(user);
             _context.SaveChanges();
@@ -188,6 +226,8 @@ namespace SecureApp.API.Controllers
             {
                 token = new JwtSecurityTokenHandler().WriteToken(newToken)
             });
+
+
         }
 
     }

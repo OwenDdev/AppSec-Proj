@@ -2,3 +2,48 @@
 4/15/2026 9:12:50 PM [INFO] Login attempt from for user: user
 4/15/2026 9:12:51 PM [INFO] Login SUCCESS for user: user
 4/15/2026 9:12:51 PM [INFO] Login SUCCESS for user: user
+4/15/2026 9:30:18 PM [INFO] Login attempt from for user: user
+4/15/2026 9:30:19 PM [INFO] Login attempt from for user: user
+4/15/2026 9:30:20 PM [INFO] Login SUCCESS for user: user
+4/15/2026 9:30:20 PM [INFO] Login SUCCESS for user: user
+4/15/2026 9:33:38 PM [INFO] File upload attempt by user
+4/15/2026 9:33:38 PM [INFO] File uploaded SUCCESS: file.pdf by user
+4/15/2026 9:33:38 PM [INFO] User user requested their file list
+4/15/2026 9:33:59 PM [INFO] Login attempt from for user: user
+4/15/2026 9:33:59 PM [INFO] Login SUCCESS for user: user
+4/15/2026 9:35:49 PM [INFO] User user requested their file list
+4/15/2026 9:36:28 PM [INFO] File upload attempt by user
+4/15/2026 9:36:28 PM [INFO] File uploaded SUCCESS: porewen3848_Lab5.pdf by user
+4/15/2026 9:36:28 PM [INFO] User user requested their file list
+4/15/2026 10:07:03 PM [INFO] Login attempt from for user: admin
+4/15/2026 10:07:06 PM [INFO] Login SUCCESS for user: admin
+4/15/2026 10:07:06 PM [INFO] Admin admin requested user list
+4/15/2026 10:07:06 PM [INFO] Admin admin requested user list
+4/15/2026 10:15:11 PM [INFO] New user registered: admin2 with role Admin
+4/15/2026 10:17:17 PM [INFO] Admin admin requested user list
+4/15/2026 10:17:17 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:14 PM [INFO] Admin admin DELETED user admin (ID: 1)
+4/15/2026 10:19:14 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:17 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:17 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:17 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:17 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:18 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:18 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:19 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:19 PM [INFO] Admin admin requested user list
+4/15/2026 10:19:28 PM [INFO] Login attempt from for user: admin
+4/15/2026 10:19:28 PM [WARNING] Login failed (user not found) from : admin
+4/15/2026 10:19:31 PM [INFO] Login attempt from for user: admin2
+4/15/2026 10:19:31 PM [INFO] Login SUCCESS for user: admin2
+4/15/2026 10:19:31 PM [INFO] Admin admin2 requested user list
+4/15/2026 10:19:31 PM [INFO] Admin admin2 requested user list
+4/15/2026 10:19:40 PM [INFO] New user registered: admin with role Admin
+4/15/2026 10:29:39 PM [INFO] Login attempt from for user: admin
+4/15/2026 10:29:40 PM [INFO] Login attempt from for user: admin
+4/15/2026 10:29:42 PM [INFO] Login attempt from for user: admin
+4/15/2026 10:29:42 PM [INFO] Login SUCCESS for user: admin
+4/15/2026 10:29:42 PM [INFO] Login SUCCESS for user: admin
+4/15/2026 10:29:42 PM [INFO] Admin admin requested user list
+4/15/2026 10:29:42 PM [INFO] Admin admin requested user list
+4/15/2026 10:29:42 PM [INFO] Login SUCCESS for user: admin
