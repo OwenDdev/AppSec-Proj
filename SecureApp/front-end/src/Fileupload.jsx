@@ -51,9 +51,13 @@ function Fileupload() {
     return (
         <>
             <Navbaruser/>
-            <h1>User view</h1>
+            <h1>User Files</h1>
 
             <h2>hello User!</h2>
+
+            <ul>
+                <li>users files</li>
+            </ul>
 
              {error && <p style={{ color: "red" }}>{error}</p>}
             {message && <p style={{ color: "green" }}>{message}</p>}

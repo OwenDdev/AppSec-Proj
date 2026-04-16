@@ -1,8 +1,8 @@
-using SecureApp.API.Data;
-using Microsoft.EntityFrameworkCore;
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using SecureApp.API.Data;
+using SecureApp.API.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +33,8 @@ builder.Services.AddCors(options =>
 //jwt
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
+
+builder.Services.AddSingleton<ICustomLogger, CustomLogger>();
 
 builder.Services.AddAuthentication(options =>
 {

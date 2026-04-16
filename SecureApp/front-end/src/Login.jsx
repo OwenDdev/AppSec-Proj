@@ -90,7 +90,7 @@ function Login(){
 
     return(
     <>  
-        <h2>AppSec</h2>
+        <h2>AppSec - File Upload Portal</h2>
 
         {error && ( <p style={{ color: "red" }}>{error}</p> )}
 

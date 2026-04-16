@@ -1,0 +1,4 @@
+4/15/2026 9:12:49 PM [INFO] Login attempt from for user: user
+4/15/2026 9:12:50 PM [INFO] Login attempt from for user: user
+4/15/2026 9:12:51 PM [INFO] Login SUCCESS for user: user
+4/15/2026 9:12:51 PM [INFO] Login SUCCESS for user: user
